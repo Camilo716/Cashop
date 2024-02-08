@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\cashop.core\cashop.core.csproj" />
+  </ItemGroup>
+
 </Project>
