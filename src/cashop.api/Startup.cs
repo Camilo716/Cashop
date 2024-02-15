@@ -8,6 +8,7 @@ public class Startup(IConfiguration configuration)
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
     }
 
     public void ConfigureMiddlewares(IApplicationBuilder app, IWebHostEnvironment env)
