@@ -1,4 +1,5 @@
 using cashop.core.Entities;
+using cashop.core.Services.ProductServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace cashop.api.Controllers;
@@ -7,13 +8,17 @@ namespace cashop.api.Controllers;
 [Route("/api/[controller]")]
 public class ProductController : ControllerBase
 {
-    public ProductController()
+    private readonly PublicProductService _productService;
+
+    public ProductController(PublicProductService productService)
     {
+        _productService = productService;
     }
 
     [HttpGet]
     public async Task<ActionResult<Product>> GetAsync()
     {
-        return Ok();
+        var products = await _productService.GetAllProductsAsync();
+        return Ok(products);
     }
 }

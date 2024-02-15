@@ -1,3 +1,5 @@
+using cashop.core.Services.ProductServices;
+
 namespace cashop.api;
 
 public class Startup(IConfiguration configuration)
@@ -9,8 +11,9 @@ public class Startup(IConfiguration configuration)
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
-    }
 
+        services.AddScoped<PublicProductService>();
+    }
     public void ConfigureMiddlewares(IApplicationBuilder app, IWebHostEnvironment env)
     {
         if (env.IsDevelopment())
