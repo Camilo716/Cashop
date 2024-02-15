@@ -1,0 +1,6 @@
+@cashop.api_HostAddress = http://localhost:5032
+
+GET {{cashop.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
