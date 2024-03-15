@@ -7,18 +7,17 @@ namespace cashop.infraestructure;
 public class CashopDbContext : DbContext
 {
 
-    public CashopDbContext(DbContextOptions<CashopDbContext> options) : base(options)
-    {
-    }
+    public CashopDbContext(DbContextOptions<CashopDbContext> options) : base(options) { }
 
     public DbSet<Product> Products { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Product>()
             .HasKey(p => p.Id);
 
-        base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
