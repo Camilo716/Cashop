@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\cashop.core\cashop.core.csproj" />
+    <ProjectReference Include="..\cashop.infraestructure\cashop.infraestructure.csproj" />
   </ItemGroup>
 
 </Project>

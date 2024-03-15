@@ -1,4 +1,8 @@
+using cashop.core.Entities;
+using cashop.core.interfaces;
 using cashop.core.Services.ProductServices;
+using cashop.infraestructure;
+using cashop.infraestructure.Data;
 
 namespace cashop.api;
 
@@ -8,11 +12,15 @@ public class Startup(IConfiguration configuration)
 
     public void ConfigureServices(IServiceCollection services)
     {
+        Dependencies.ConfigureServices(_configuration, services);
+        services.AddDbContext<CashopDbContext>();
         services.AddControllers();
+
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
         services.AddScoped<PublicProductService>();
+        services.AddScoped<IRepository<Product>, EfRepository<Product>>();
     }
     public void ConfigureMiddlewares(IApplicationBuilder app, IWebHostEnvironment env)
     {
