@@ -4,7 +4,7 @@ public class ProductGetEndpointTest : IClassFixture<TestDatabaseFixture>
 {
     private readonly TestDatabaseFixture _fixture;
 
-    ProductGetEndpointTest(TestDatabaseFixture testDatabaseFixture)
+    public ProductGetEndpointTest(TestDatabaseFixture testDatabaseFixture)
     {
         _fixture = testDatabaseFixture;
     }

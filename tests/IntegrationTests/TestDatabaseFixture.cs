@@ -2,19 +2,19 @@ using cashop.infraestructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
+using Microsoft.Extensions.Configuration;
 namespace IntegrationTests;
 
 public class TestDatabaseFixture : IClassFixture<WebApplicationFactory<Program>>
 {
-    private const string ConnectionString = "Host=172.17.0.2;Port=1433;Database=cashop;Username=SA;Password=Mysecretpassword*;Trusted_Connection=True";
+    private string ConnectionString;
     private static readonly object _lock = new();
     private static bool _databaseInitialized;
 
     public TestDatabaseFixture()
     {
+        ConnectionString = GetConnectionString();
+
         lock (_lock)
         {
             if (!_databaseInitialized)
@@ -26,6 +26,16 @@ public class TestDatabaseFixture : IClassFixture<WebApplicationFactory<Program>>
 
             _databaseInitialized = true;
         }
+    }
+
+    private static string GetConnectionString()
+    {
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.Development.json")
+            .Build();
+
+        return configuration.GetConnectionString("default-connection")!;
     }
 
     public CashopDbContext CreateContext()
