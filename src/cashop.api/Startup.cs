@@ -3,6 +3,7 @@ using cashop.core.interfaces;
 using cashop.core.Services.ProductServices;
 using cashop.infraestructure;
 using cashop.infraestructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace cashop.api;
 
@@ -13,7 +14,6 @@ public class Startup(IConfiguration configuration)
     public void ConfigureServices(IServiceCollection services)
     {
         Dependencies.ConfigureServices(_configuration, services);
-        services.AddDbContext<CashopDbContext>();
         services.AddControllers();
 
         services.AddEndpointsApiExplorer();

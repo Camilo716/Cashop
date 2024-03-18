@@ -6,7 +6,7 @@ namespace cashop.infraestructure.Data;
 
 public class EfRepository<T> : RepositoryBase<T>, IRepository<T> where T : class
 {
-    public EfRepository(DbContext dbContext) : base(dbContext)
+    public EfRepository(CashopDbContext dbContext) : base(dbContext)
     {
     }
 }
